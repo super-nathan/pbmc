@@ -1,0 +1,39 @@
+#!/bin/sh
+
+#  
+#
+#  Created by Lee Rumble on 01/03/2013.
+#
+
+
+# Make sure drivers are accessable and we have permission for video
+echo -n "Installing drivers..."
+
+# Instant fix of vchiq driver until reboot
+if [ -e /dev/vchiq ]
+then
+chmod a+rw /dev/vchiq
+fi
+
+# Perm fix for vchiq 
+if [ ! -e /etc/udev/rules.d/10-vchiq-permissions.rules ]
+then
+echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
+else
+echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' >> /etc/udev/rules.d/10-vchiq-permissions.rules
+fi
+
+# Add all the shared opjects from this directory
+if [ -e /etc/ld.so.conf ]
+then
+echo "/opt/vc/lib/" >> /etc/ld.so.conf
+else
+echo "Failed to load drivers. Minecraft-pi may not run."
+fi 
+
+# Reload Shared library
+ldconfig
+echo "Bang!"
+echo "Please use the Minecraft-Pi launcher to play; /usr/bin/minecraft"
+
+

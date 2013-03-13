@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Full paths must be used for minecraft to work.
+cd /usr/games
+/usr/games/minecraft-pi
+

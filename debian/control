@@ -1,0 +1,11 @@
+Source: minecraft-pi
+Section: games
+Priority: optional
+Maintainer: Lee Rumble <lee.rumble@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Homepage: pi.minecraft.net
+
+Package: minecraft-pi
+Architecture: all
+Depends:
+Description: Installer for the official binaries of Minecraft-Pi
